@@ -11,7 +11,9 @@ import SideNav from './components/side-nav';
 import FooterNav from './components/footer-nav';
 import title from './i18n/title.json';
 
-Vue.use(Element);
+Vue.use(Element, {
+  size: 'medium'
+});
 Vue.use(VueRouter);
 Vue.component('demo-block', demoBlock);
 Vue.component('main-footer', MainFooter);
