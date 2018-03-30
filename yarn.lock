@@ -2436,7 +2436,11 @@ eslint-config-defaults@*:
 
 eslint-config-elemefe@*:
   version "0.3.0"
+<<<<<<< HEAD
   resolved "http://registry.npm.taobao.org/eslint-config-elemefe/download/eslint-config-elemefe-0.3.0.tgz#6f06cd6a8c6949bf58fa7fe2d4b4a4fde89bf008"
+=======
+  resolved "https://registry.yarnpkg.com/eslint-config-elemefe/-/eslint-config-elemefe-0.3.0.tgz#6f06cd6a8c6949bf58fa7fe2d4b4a4fde89bf008"
+>>>>>>> 3e0106e069670551ae797b302eba89c48ac517aa
 
 eslint-config-elemefe@0.1.1:
   version "0.1.1"
