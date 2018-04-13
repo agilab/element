@@ -16,7 +16,7 @@
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
     "build:umd": "node build/bin/build-locale.js",
-    "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage && lerna clean --yes",
+    "clean": "rm -rf lib && rm -rf packages/*/lib && rm -rf test/**/coverage && lerna clean --yes",
     "deploy": "npm run deploy:build && gh-pages -d examples/element-ui --remote eleme && del examples/element-ui",
     "deploy:build": "npm run build:file && cooking build -c build/cooking.demo.js -p && echo element.eleme.io>>examples/element-ui/CNAME",
     "dev": "npm run bootstrap && npm run build:file && cooking watch -c build/cooking.demo.js -p & node build/bin/template.js",
