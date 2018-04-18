@@ -167,6 +167,8 @@ MessageBox.alert = (message, title, options) => {
     title: title,
     message: message,
     $type: 'alert',
+    center: true,
+    showClose: false,
     closeOnPressEscape: false,
     closeOnClickModal: false
   }, options));
@@ -183,6 +185,8 @@ MessageBox.confirm = (message, title, options) => {
     title: title,
     message: message,
     $type: 'confirm',
+    center: true,
+    showClose: false,
     showCancelButton: true
   }, options));
 };
