@@ -69,6 +69,8 @@ import Header from '../packages/header/index.js';
 import Aside from '../packages/aside/index.js';
 import Main from '../packages/main/index.js';
 import Footer from '../packages/footer/index.js';
+import Popup from '../packages/popup/index.js';
+import PopupBox from '../packages/popup-box/index.js';
 import locale from 'element-ui/src/locale';
 import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
 
@@ -138,6 +140,7 @@ const components = [
   Aside,
   Main,
   Footer,
+  Popup,
   CollapseTransition
 ];
 
@@ -161,6 +164,8 @@ const install = function(Vue, opts = {}) {
   Vue.prototype.$prompt = MessageBox.prompt;
   Vue.prototype.$notify = Notification;
   Vue.prototype.$message = Message;
+
+  Vue.prototype.$popbox = PopupBox;
 
   Vue.prototype.$ELEMENT = ELEMENT;
 };
@@ -244,7 +249,9 @@ module.exports = {
   Header,
   Aside,
   Main,
-  Footer
+  Footer,
+  Popup,
+  PopupBox
 };
 
 module.exports.default = module.exports;

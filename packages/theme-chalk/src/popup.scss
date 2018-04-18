@@ -1,0 +1,126 @@
+@import "mixins/mixins";
+@import "mixins/utils";
+@import "common/var";
+@import "common/popup";
+
+@include b(popup) {
+  position: relative;
+  margin: 0 auto 50px;
+  background: $--color-white;
+  border-radius: $--border-radius-small;
+  box-shadow: $--dialog-box-shadow;
+  box-sizing: border-box;
+  width: 50%;
+
+  @include when(fullscreen) {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
+    overflow: auto;
+  }
+
+  @include e(wrapper) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0;
+  }
+
+  @include e(header) {
+    height: 18px;
+    padding: $--popupbox-padding-primary;
+    // padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  @include e(headerbtn) {
+    position: absolute;
+    top: $--popupbox-padding-primary;
+    right: $--popupbox-padding-primary;
+    padding: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: $--message-close-size;
+
+    .el-popup__close {
+      color: $--color-info;
+    }
+
+    &:focus, &:hover {
+      .el-popup__close {
+        color: $--color-primary;
+      }
+    }
+  }
+
+  @include e(title) {
+    line-height: 1;
+    font-size: $--popupbox-font-size;
+    color: $--color-text-primary;
+  }
+
+  @include e(body) {
+    padding: 30px 20px;
+    color: $--color-text-regular;
+    line-height: $--dialog-line-height;
+    font-size: $--dialog-font-size;
+  }
+
+  @include e(footer) {
+    padding: 18px;
+    text-align: center;
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+    background-color: #f5f5f5;
+  }
+
+  // 内容居中布局
+  @include m(center) {
+    text-align: center;
+
+    @include e(body) {
+      text-align: initial;
+      // padding: 25px ($--dialog-padding-primary + 5px) 30px;
+    }
+
+    @include e(footer) {
+      text-align: inherit;
+    }
+  }
+}
+
+.popup-fade-enter-active {
+  animation: popup-fade-in .3s;
+}
+
+.popup-fade-leave-active {
+  animation: popup-fade-out .3s;
+}
+
+@keyframes popup-fade-in {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes popup-fade-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}

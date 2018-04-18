@@ -259,6 +259,21 @@ $--alert-danger-color: $--color-danger-lighter !default;
 $--alert-icon-size: 16px !default;
 $--alert-icon-large-size: 28px !default;
 
+/* Popup Box
+-------------------------- */
+$--popupbox-width: 420px !default;
+$--popupbox-border-radius: 4px !default;
+$--popupbox-font-size: 16px !default;
+$--popupbox-content-font-size: $--font-size-base !default;
+$--popupbox-content-color: $--color-text-regular !default;
+$--popupbox-error-font-size: 12px !default;
+$--popupbox-padding-primary: 15px !default;
+
+$--popupbox-success-color: $--color-success !default;
+$--popupbox-info-color: $--color-info !default;
+$--popupbox-warning-color: $--color-warning !default;
+$--popupbox-danger-color: $--color-danger !default;
+
 /* Message Box
 -------------------------- */
 $--msgbox-width: 420px !default;

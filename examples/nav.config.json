@@ -243,6 +243,14 @@
             {
               "path": "/collapse",
               "title": "Collapse 折叠面板"
+            },
+            {
+              "path": "/popup",
+              "title": "Popup 自家弹框（组件）"
+            },
+            {
+              "path": "/popup-box",
+              "title": "PopupBox 自家弹框（方法）"
             }
           ]
         }
@@ -493,6 +501,14 @@
             {
               "path": "/collapse",
               "title": "Collapse"
+            },
+            {
+              "path": "/popup",
+              "title": "Popup"
+            },
+            {
+              "path": "/popup-box",
+              "title": "PopupBox"
             }
           ]
         }
@@ -743,6 +759,14 @@
             {
               "path": "/collapse",
               "title": "Collapse"
+            },
+            {
+              "path": "/popup",
+              "title": "Popup"
+            },
+            {
+              "path": "/popup-box",
+              "title": "PopupBox"
             }
           ]
         }
