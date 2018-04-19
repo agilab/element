@@ -31,7 +31,7 @@
   }
 
   @include e(header) {
-    height: 18px;
+    min-height: 18px;
     padding: $--popupbox-padding-primary;
     // padding-bottom: 10px;
     border-bottom: 1px solid #ddd;
