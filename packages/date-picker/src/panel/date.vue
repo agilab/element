@@ -90,12 +90,14 @@
             <date-table
               v-show="currentView === 'date'"
               @pick="handleDatePick"
+              @select="handleDateSelect"
               :selection-mode="selectionMode"
               :first-day-of-week="firstDayOfWeek"
               :value="new Date(value)"
               :default-value="defaultValue ? new Date(defaultValue) : null"
               :date="date"
-              :disabled-date="disabledDate">
+              :disabled-date="disabledDate"
+              :selected-date="selectedDate">
             </date-table>
             <year-table
               v-show="currentView === 'year'"
@@ -124,7 +126,8 @@
           size="mini"
           type="text"
           class="el-picker-panel__link-btn"
-          @click="changeToNow">
+          @click="changeToNow"
+          v-show="selectionMode !== 'dates'">
           {{ t('el.datepicker.now') }}
         </el-button>
         <el-button
@@ -147,6 +150,7 @@
     isDate,
     modifyDate,
     modifyTime,
+    modifyWithDefaultTime,
     clearMilliseconds,
     clearTime,
     prevYear,
@@ -184,6 +188,7 @@
       },
 
       value(val) {
+        if (this.selectionMode === 'dates' && this.value) return;
         if (isDate(val)) {
           this.date = new Date(val);
         } else {
@@ -207,6 +212,8 @@
           if (this.currentView !== 'year' || this.currentView !== 'month') {
             this.currentView = 'month';
           }
+        } else if (newVal === 'dates') {
+          this.currentView = 'date';
         }
       }
     },
@@ -233,6 +240,9 @@
       emit(value, ...args) {
         if (!value) {
           this.$emit('pick', value, ...args);
+        } else if (Array.isArray(value)) {
+          const dates = value.map(date => this.showTime ? clearMilliseconds(date) : clearTime(date));
+          this.$emit('pick', dates, ...args);
         } else {
           this.$emit('pick', this.showTime ? clearMilliseconds(value) : clearTime(value), ...args);
         }
@@ -293,7 +303,7 @@
 
       handleTimePick(value, visible, first) {
         if (isDate(value)) {
-          const newDate = modifyTime(this.date, value.getHours(), value.getMinutes(), value.getSeconds());
+          const newDate = this.value ? modifyTime(this.date, value.getHours(), value.getMinutes(), value.getSeconds()) : modifyWithDefaultTime(value, this.defaultTime);
           this.date = newDate;
           this.emit(this.date, true);
         } else {
@@ -316,9 +326,15 @@
         }
       },
 
+      handleDateSelect(value) {
+        if (this.selectionMode === 'dates') {
+          this.selectedDate = value;
+        }
+      },
+
       handleDatePick(value) {
         if (this.selectionMode === 'day') {
-          this.date = modifyDate(this.date, value.getFullYear(), value.getMonth(), value.getDate());
+          this.date = this.value ? modifyDate(this.date, value.getFullYear(), value.getMonth(), value.getDate()) : modifyWithDefaultTime(value, this.defaultTime);
           this.emit(this.date, this.showTime);
         } else if (this.selectionMode === 'week') {
           this.emit(value.date);
@@ -347,7 +363,12 @@
       },
 
       confirm() {
-        this.emit(this.date);
+        if (this.selectionMode === 'dates') {
+          this.emit(this.selectedDate);
+        } else {
+          const date = this.value ? this.date : modifyWithDefaultTime(this.date, this.defaultTime);
+          this.emit(date);
+        }
       },
 
       resetView() {
@@ -458,12 +479,14 @@
         date: new Date(),
         value: '',
         defaultValue: null,
+        defaultTime: null,
         showTime: false,
         selectionMode: 'day',
         shortcuts: '',
         visible: false,
         currentView: 'date',
         disabledDate: '',
+        selectedDate: [],
         firstDayOfWeek: 7,
         showWeekNumber: false,
         timePickerVisible: false,
@@ -492,7 +515,7 @@
       },
 
       footerVisible() {
-        return this.showTime;
+        return this.showTime || this.selectionMode === 'dates';
       },
 
       visibleTime() {

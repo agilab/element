@@ -29,6 +29,9 @@
         :autocomplete="autoComplete"
         :value="currentValue"
         ref="input"
+        @compositionstart="handleComposition"
+        @compositionupdate="handleComposition"
+        @compositionend="handleComposition"
         @input="handleInput"
         @focus="handleFocus"
         @blur="handleBlur"
@@ -76,6 +79,9 @@
       :tabindex="tabindex"
       class="el-textarea__inner"
       :value="currentValue"
+      @compositionstart="handleComposition"
+      @compositionupdate="handleComposition"
+      @compositionend="handleComposition"
       @input="handleInput"
       ref="textarea"
       v-bind="$attrs"
@@ -94,6 +100,7 @@
   import Migrating from 'element-ui/src/mixins/migrating';
   import calcTextareaHeight from './calcTextareaHeight';
   import merge from 'element-ui/src/utils/merge';
+  import { isKorean } from 'element-ui/src/utils/shared';
 
   export default {
     name: 'ElInput',
@@ -115,12 +122,15 @@
 
     data() {
       return {
-        currentValue: this.value,
+        currentValue: this.value === undefined || this.value === null
+          ? ''
+          : this.value,
         textareaCalcStyle: {},
         prefixOffset: null,
         suffixOffset: null,
         hovering: false,
-        focused: false
+        focused: false,
+        isOnComposition: false
       };
     },
 
@@ -186,7 +196,11 @@
         return this.$slots.prepend || this.$slots.append;
       },
       showClear() {
-        return this.clearable && !this.disabled && this.currentValue !== '' && (this.focused || this.hovering);
+        return this.clearable &&
+          !this.disabled &&
+          !this.readonly &&
+          this.currentValue !== '' &&
+          (this.focused || this.hovering);
       }
     },
 
@@ -243,7 +257,18 @@
         this.focused = true;
         this.$emit('focus', event);
       },
+      handleComposition(event) {
+        if (event.type === 'compositionend') {
+          this.isOnComposition = false;
+          this.handleInput(event);
+        } else {
+          const text = event.target.value;
+          const lastCharacter = text[text.length - 1] || '';
+          this.isOnComposition = !isKorean(lastCharacter);
+        }
+      },
       handleInput(event) {
+        if (this.isOnComposition) return;
         const value = event.target.value;
         this.$emit('input', value);
         this.setCurrentValue(value);

@@ -1,5 +1,62 @@
 ## Changelog
 
+### 2.3.7
+
+*2018-04-29*
+
+- Fixed Table not updating its header widths when the scroll bar disappears due to filtering, #10834
+- Fixed clearable Input still showing the clear icon when its initial value is `null`, #10912
+- Fixed incorrect trigger of the `active-change` event after changing ColorPicker's binding value programatically, #10903 (by @zhangbobell)
+- Fixed filterable Select causing an infinite loop when navigating options using keyboard if all options are disabled, #10945
+
+### 2.3.6
+
+*2018-04-21*
+
+- Fixed wrong behavior of Tree's `allow-drop` callback when `type` parameter is used, #10821
+- Now you can properly enter keywords in filterable single Select in IE11, #10822
+- Fixed single Select incorrectly triggering `blur` event after clicking an option, #10822
+
+### 2.3.5
+
+*2018-04-20*
+
+- Fixed incorrect highlights in DatePicker panel when `type` is week, #10712
+- Fixed InputNumber being empty when its initial value is 0, #10714
+- Added `automatic-dropdown` attribute for Select, #10042 (by @Seebiscuit)
+- Fixed disabled Rate's value still being updated by navigation keys, #10726 (by @Richard-Choooou)
+- Now DatePicker's `type` attribute can be `'dates'`, where you can pick multiple dates in one picker, #10650 (by @Mini256)
+- Added `prev-click` and `next-click` events for Pagination, #10755
+- Added `pager-count` attribute for Pagination, #10493 (by @chongjohn716)
+- Added `type` as the 3rd param of Tree's `allow-drop` attribute callback, #10792
+- Now we use ResizeObserver to detect DOM element resizing, #10779
+
+### 2.3.4
+
+*2018-04-12*
+
+- Deleted duplicate `showTimeout` attribute in SubMenu's TypeScript declaration, #10566 (by @kimond)
+- Now you can customize Transfer's data item using scoped slot, #10577
+- Fixed clicking disabled prev and next button of Pagination still triggers `current-change` event, #10628
+- Fixed Textarea displaying `undefined` in SSR when its value is not set, #10630
+- Fixed disabled TabItem style when `type` is border-card, #10640
+- Added `$index` as `formatter`'s fourth param of Table, #10645
+- Fixed CheckboxButton not exported in TypeScript declaration, #10666
+
+### 2.3.3
+
+*2018-04-04*
+
+- Added `shadow` attribute for Card, #10418 (by @YunYouJun)
+- Fixed Badge being hidden when `value` is `0`, #10470
+- Fixed some bugs of draggable Tree, #10474 #10494
+- Added `placement` for Autocomplete, #10475
+- Now `default-time` attribute also works in non-range DateTimePicker, #10321 (by @RickMacTurk)
+- Removed the blue outline of TabItem after the browser blurs or is minimized, #10503
+- Added `popper-append-to-body` attribute for SubMenu, #10515
+- Removed visual feedback when hovering on non-link BreadcrumbItem, #10551
+- Fixed InputNumber's `change` event to ensure the component's binding value is updated in the event handler, #10553
+
 ### 2.3.2
 
 *2018-03-29*

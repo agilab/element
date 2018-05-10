@@ -489,9 +489,9 @@ Personalice cómo se muestran las sugerencias.
     slot="suffix"
     @click="handleIconClick">
   </i>
-  <template slot-scope="props">
-    <div class="value">{{ props.item.value }}</div>
-    <span class="link">{{ props.item.link }}</span>
+  <template slot-scope="{ item }">
+    <div class="value">{{ item.value }}</div>
+    <span class="link">{{ item.link }}</span>
   </template>
 </el-autocomplete>
 
@@ -622,7 +622,7 @@ Búsqueda de datos desde el servidor.
 
 | Atributo      | Descripción                              | Tipo             | Valores aceptados                | Por defecto |
 | ------------- | ---------------------------------------- | ---------------- | -------------------------------- | ----------- |
-| type          | tipo de input                            | string           | text / textarea                  | text        |
+| type          | tipo de input                            | string           | text, textarea y otros [tipos de entrada nativos](https://developer.mozilla.org/es/docs/Web/HTML/Elemento/input#Form_%3Cinput%3E_types)  | text        |
 | value         | valor enlazado                           | string / number  | —                                | —           |
 | maxlength     | igual que `maxlength` en el input nativo | number           | —                                | —           |
 | minlength     | igual que `minlength` en el input nativo | number           | —                                | —           |
@@ -661,7 +661,7 @@ Búsqueda de datos desde el servidor.
 | blur   | Se dispara cuando se pierde el foco      | (event: Event)            |
 | focus  | Se dispara cuando se obtiene el foco     | (event: Event)            |
 | change | se activa cuando cambia el valor de entrada | (value: string \| number) |
-| clear | se dispara cuando la entrada es borrada por el botón generado por el atributo "clearable". | (event: Event) |
+| clear | se dispara cuando la entrada es borrada por el botón generado por el atributo "clearable". | — |
 
 ### Input Metodo
 
@@ -681,7 +681,7 @@ Atributo | Descripción | Tipo | Opciones | Por defecto
 |icon | nombre del icono | string | — | — |
 |value | valor enlazado | string | — | — |
 | debounce | retardo al escribir, en milisegundos | number | — | 300 |
-| placement | placement of the popup menu | string | top / top-start / top-end / bottom / bottom-start / bottom-end | bottom-start |
+| placement | ubicación del menú emergente | string | top / top-start / top-end / bottom / bottom-start / bottom-end | bottom-start |
 |fetch-suggestions | un método para obtener las sugerencias del input. Cuando las sugerencias estén listas, invocar `callback(data:[])` para devolverlas a Autocomplete | Function(queryString, callback) | — | — |
 | popper-class | nombre personalizado de clase para el dropdown de autocomplete | string | — | — |
 | trigger-on-focus | si se deben mostrar sugerencias cuando el input obtiene el foco | boolean | — | true |
@@ -689,7 +689,7 @@ Atributo | Descripción | Tipo | Opciones | Por defecto
 | select-when-unmatched | si se emite un evento `select` al pulsar enter cuando no hay coincidencia de Autocomplete | boolean | — | false |
 | label | texto de la etiqueta | string | — | — |
 
-### Autocomplete slots
+### Autocomplete Slots
 
 | Nombre  | Descripción                          |
 | ------- | ------------------------------------ |
@@ -697,6 +697,12 @@ Atributo | Descripción | Tipo | Opciones | Por defecto
 | suffix  | contenido como sufijo del input      |
 | prepend | contenido antes del input            |
 | append  | contenido a añadir después del input |
+
+### Autocomplete Scoped Slot
+
+| Name | Description |
+|------|--------|
+| — | Custom content for input suggestions. The scope parameter is { item } |
 
 ### Autocomplete Eventos
 

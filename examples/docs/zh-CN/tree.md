@@ -255,8 +255,12 @@
       handleDrop(draggingNode, dropNode, dropType, ev) {
         console.log('tree drop: ', dropNode.label, dropType);
       },
-      allowDrop(draggingNode, dropNode) {
-        return dropNode.data.label !== '二级 3-1';
+      allowDrop(draggingNode, dropNode, type) {
+        if (dropNode.data.label === '二级 3-1') {
+          return type !== 'inner';
+        } else {
+          return true;
+        }
       },
       allowDrag(draggingNode) {
         return draggingNode.data.label.indexOf('三级 3-1-1') === -1;
@@ -1161,8 +1165,12 @@
       handleDrop(draggingNode, dropNode, dropType, ev) {
         console.log('tree drop: ', dropNode.label, dropType);
       },
-      allowDrop(draggingNode, dropNode) {
-        return dropNode.data.label !== '二级 3-1';
+      allowDrop(draggingNode, dropNode, type) {
+        if (dropNode.data.label === '二级 3-1') {
+          return type !== 'inner';
+        } else {
+          return true;
+        }
       },
       allowDrag(draggingNode) {
         return draggingNode.data.label.indexOf('三级 3-1-1') === -1;
@@ -1197,7 +1205,7 @@
 | lazy                  | 是否懒加载子节点，需与 load 方法结合使用           | boolean                     | —    | false |
 | draggable             | 是否开启拖拽节点功能                                   | boolean            | —    | false |
 | allow-drag            | 判断节点能否被拖拽                  | Function(node)  | —  | —  |
-| allow-drop            | 拖拽时判定位置能否被放置             | Function(draggingNode, dropNode)  | —    | —     |
+| allow-drop            | 拖拽时判定目标节点能否被放置。`type` 参数有三种情况：'prev'、'inner' 和 'next'，分别表示放置在目标节点前、插入至目标节点和放置在目标节点后 | Function(draggingNode, dropNode, type)  | —    | —     |
 
 ### props
 | 参数       | 说明                | 类型     | 可选值  | 默认值  |
@@ -1249,7 +1257,7 @@
 | node-drag-end  | 拖拽结束时（可能未成功）触发的事件  | 共四个参数，依次为：被拖拽节点对应的 Node、结束拖拽时最后进入的节点（可能为空）、被拖拽节点的放置位置（before、after、inner）、event |
 | node-drop  | 拖拽成功完成时触发的事件  | 共四个参数，依次为：被拖拽节点对应的 Node、结束拖拽时最后进入的节点、被拖拽节点的放置位置（before、after、inner）、event |
 
-### Scoped slot
+### Scoped Slot
 | name | 说明 |
 |------|--------|
 | — | 自定义树节点的内容，参数为 { node, data } |

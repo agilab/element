@@ -196,8 +196,8 @@
           this.$refs.input.setCurrentValue(this.currentValue);
           return;
         }
-        this.$emit('change', newVal, oldVal);
         this.$emit('input', newVal);
+        this.$emit('change', newVal, oldVal);
         this.currentValue = newVal;
       },
       handleInputChange(value) {
@@ -216,7 +216,8 @@
       innerInput.setAttribute('aria-disabled', this.inputNumberDisabled);
     },
     updated() {
-      let innerInput = this.$refs.input.$refs.input;
+      if (!this.$refs || !this.$refs.input) return;
+      const innerInput = this.$refs.input.$refs.input;
       innerInput.setAttribute('aria-valuenow', this.currentValue);
     }
   };
