@@ -63,6 +63,19 @@
 
 > A Vue.js 2.0 UI Toolkit for Web.
 
+## Instructions
+- The project is forked from https://github.com/ElemeFE/element for more FLEXIBILITY when imported by front-end projects of agilab.
+- What we will do
+  - create new component
+  - customize style
+  - extend existed components
+- Tips for customizing style
+  - new a folder with name "theme-<YOUR_PROJECT_NAME>" under ``/packages`` directory
+  - you may refer to "theme-tesla" for theme's content you need to prepare
+  - run `` yarn run build:theme <YOUR_PROJECT_NAME> `` to build your theme
+  - you may add <YOUR_PROJECT_NAME> to some commands, e.g. ``dist:all``, as the very first parameter, in order to build project oriented theme with the command.
+
+
 ## Links
 - Homepage and documentation
   - [International users](http://element.eleme.io/#/en-US)

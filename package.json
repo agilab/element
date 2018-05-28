@@ -13,7 +13,7 @@
   "scripts": {
     "bootstrap": "yarn || npm i",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
-    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
+    "build:theme": "bash -c '[[ $0 = bash ]] && project=chalk || project=\"$0\" && node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-${project}/gulpfile.js && cp-cli packages/theme-${project}/lib lib/theme-${project}'",
     "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
     "build:umd": "node build/bin/build-locale.js",
     "clean": "rm -rf lib && rm -rf packages/*/lib && rm -rf test/**/coverage && lerna clean --yes",
