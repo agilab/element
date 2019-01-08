@@ -74,14 +74,53 @@
   - create new component
   - customize style
   - extend existed components
-- Tips for customizing style
-  - new a folder with name "theme-<YOUR_PROJECT_NAME>" under ``/packages`` directory
-  - you may refer to "theme-tesla" for theme's content you need to prepare
-  - run `` yarn run build:theme <YOUR_PROJECT_NAME> `` to build your theme
-  - you may add <YOUR_PROJECT_NAME> to some commands, e.g. ``dist:all``, as the very first parameter, in order to build project oriented theme with the command.
+  - update from officical Element-UI
+
+### Basic branches
+
+* branch **dev**: we develop or extend official element-ui in this branch
+* branch **master**: we track master branch of offical element-ui from this branch
+
+### Basic developing procedure
+
+* clone this repository by git to your local one
+* checkout to dev branch
+* developing some features,  **Including But Not Limited To** features listed in "What we will do" above
+* commit and push to dev branch
+
+### Basic updating procedure
+
+* supposed you have cloned this repository to your local one
+* add remote with name like **element-ui** and url https://github.com/ElemeFE/element
+* new a branch master from origin/master
+* checkout to master branch
+* pull from **element-ui/master**, with tags if needed
+* push to **origin/master**, with tags if needed
+* checkout to dev branch
+* merge from master branch, resolving conflicts if there are some ones.
+* push to **origin/dev**
+
+### Tips for customizing style
+
+- new a folder with name "theme-<YOUR_PROJECT_NAME>" under ``/packages`` directory
+- you may refer to "theme-tesla" for theme's content you need to prepare
+- run `` yarn run build:theme <YOUR_PROJECT_NAME> `` to build your theme
+- you may add <YOUR_PROJECT_NAME> to some commands, e.g. ``dist:all``, as the very first parameter, in order to build project oriented theme with the command.
+- commit and push to 
+
+
+
+
+
+
+------ 
+
+以下是 Element-UI 的官方文档
+
 
 
 ## Links
+
 - Homepage and documentation
   - [International users](http://element.eleme.io/#/en-US)
   - [Chinese users](http://element-cn.eleme.io/#/zh-CN)
