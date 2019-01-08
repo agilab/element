@@ -44,7 +44,6 @@ const install = function(Vue, opts = {}) {
 
   Vue.prototype.$popbox = PopupBox;
 
-  Vue.prototype.$ELEMENT = ELEMENT;
 };
 
 /* istanbul ignore if */
